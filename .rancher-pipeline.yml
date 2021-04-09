@@ -1,38 +1,8 @@
 stages:
-- name: deploy-pvcs
+- name: graylog-deploy
   steps:
   - applyYamlConfig:
-      path: ./graylog-namespace.yaml
-  - applyYamlConfig:
-      path: ./graylog-pvc.yaml
-  - applyYamlConfig:
-      path: ./mongo-pvc.yaml
-  - applyYamlConfig:
-      path: ./elasticsearch-pvc.yaml.yaml
-  - applyYamlConfig:
-      path: ./graylog-rbac.yaml
-  - applyYamlConfig:
-      path: ./elasticsearch.yaml
-  - applyYamlConfig:
-      path: ./elasticsearch-service.yaml
-  - applyYamlConfig:
-      path: ./mongo.yaml
-  - applyYamlConfig:
-      path: ./mongo-service.yaml
-  - applyYamlConfig:
-      path: ./graylog-sa.yaml
-  - applyYamlConfig:
       path: ./graylog.yaml
-  - applyYamlConfig:
-      path: ./graylog-service.yaml
-  - applyYamlConfig:
-      path: ./graylog-ingress.yaml
-  - applyYamlConfig:
-      path: ./fluentd-sa.yaml
-  - applyYamlConfig:
-      path: ./fluentd-rbac.yaml
-  - applyYamlConfig:
-      path: ./fluentd-daemon.yaml
 timeout: 60
 notification:
   recipients:
