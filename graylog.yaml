@@ -17,7 +17,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: gcp-storage
+  storageClassName: longhorn
   resources:
     requests:
       storage: 6Gi
