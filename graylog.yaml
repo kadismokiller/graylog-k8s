@@ -12,10 +12,9 @@ metadata:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mongodb-pvc-stg
+  name: mongodb-pvc
   namespace: graylog
 spec:
-  volumeName: "pvc-0371fabe-dfad-4019-88bc-a46e2f275aae"
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
@@ -145,15 +144,15 @@ spec:
         resources: {}
         
         volumeMounts:
-        - name: mongodb-volume-stg
+        - name: mongodb-volume
           mountPath: /data/db
 
       restartPolicy: Always
 
       volumes:
-      - name: mongodb-volume-stg
+      - name: mongodb-volume
         persistentVolumeClaim:
-          claimName: mongodb-pvc-stg
+          claimName: mongodb-pvc
 status: {}
 
 
