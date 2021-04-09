@@ -34,4 +34,11 @@ stages:
   - applyYamlConfig:
       path: ./fluentd-daemon.yaml
 timeout: 60
-notification: {}
+notification:
+  recipients:
+  - recipient: team-infra
+    notifier: c-75kcc:n-wpjss
+  condition:
+  - Success
+  - Changed
+  - Failed
