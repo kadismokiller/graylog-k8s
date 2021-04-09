@@ -15,6 +15,7 @@ metadata:
   name: mongodb-pvc-stg
   namespace: graylog
 spec:
+  volumeName: "pvc-0371fabe-dfad-4019-88bc-a46e2f275aae"
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
