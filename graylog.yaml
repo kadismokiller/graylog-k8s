@@ -150,7 +150,7 @@ spec:
       restartPolicy: Always
 
       volumes:
-      - name: mongodb-volume-2
+      - name: mongodb-volume
         persistentVolumeClaim:
           claimName: mongodb-pvc-stg
 status: {}
