@@ -1,29 +1,15 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "1"
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"creationTimestamp":null,"name":"mongo","namespace":"graylog"},"spec":{"replicas":1,"selector":{"matchLabels":{"service":"mongo"}},"strategy":{},"template":{"metadata":{"creationTimestamp":null,"labels":{"service":"mongo"}},"spec":{"containers":[{"image":"mongo:3","name":"mongo","resources":{},"volumeMounts":[{"mountPath":"/data/db","name":"mongodb-volume"}]}],"restartPolicy":"Always","volumes":[{"name":"mongodb-volume","persistentVolumeClaim":{"claimName":"mongodb-pvc"}}]}}},"status":{}}
-  creationTimestamp: "2021-04-09T17:03:17Z"
-  generation: 1
-  name: mongo
   namespace: graylog
-  resourceVersion: "9741"
-  selfLink: /apis/apps/v1/namespaces/graylog/deployments/mongo
-  uid: 8a7fb2a2-3907-4154-b792-eba32110846b
+  creationTimestamp: null
+  name: mongo
 spec:
-  progressDeadlineSeconds: 600
   replicas: 1
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       service: mongo
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+  strategy: {}
   template:
     metadata:
       creationTimestamp: null
@@ -32,20 +18,18 @@ spec:
     spec:
       containers:
       - image: mongo:3
-        imagePullPolicy: IfNotPresent
+        # Repositório oficial - mongo:3
         name: mongo
         resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
+        
         volumeMounts:
-        - mountPath: /data/db
-          name: mongodb-volume-2
-      dnsPolicy: ClusterFirst
+        - name: mongodb-volume
+          mountPath: /data/db
+
       restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
+
       volumes:
-      - name: mongodb-volume-2
+      - name: mongodb-volume-stg
         persistentVolumeClaim:
-          claimName: mongodb-pvc-2
+          claimName: mongodb-pvc-stg
+status: {}

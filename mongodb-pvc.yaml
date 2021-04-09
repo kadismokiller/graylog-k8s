@@ -1,27 +1,12 @@
 ﻿apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"name":"mongodb-pvc","namespace":"graylog"},"spec":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"6Gi"}},"storageClassName":"longhorn"}}
-    pv.kubernetes.io/bind-completed: "yes"
-    pv.kubernetes.io/bound-by-controller: "yes"
-    volume.beta.kubernetes.io/storage-provisioner: driver.longhorn.io
-  finalizers:
-  - kubernetes.io/pvc-protection
-  name: mongodb-pvc-2
+  name: mongodb-pvc-stg
   namespace: graylog
-  resourceVersion: "16282"
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
+  storageClassName: longhorn
   resources:
     requests:
       storage: 6Gi
-  storageClassName: longhorn
-status:
-  accessModes:
-  - ReadWriteOnce
-  capacity:
-    storage: 6Gi
-  phase: Bound
