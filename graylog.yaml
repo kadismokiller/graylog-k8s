@@ -178,19 +178,6 @@ status:
   loadBalancer: {}
 
 
-
-
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: graylog
-  #namespace: default
-  namespace: graylog
-
-
-
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -210,7 +197,6 @@ spec:
       labels:
         service: graylog
     spec:
-      serviceAccount: graylog
       containers:
       - env:
         - name: GRAYLOG_WEB_ENDPOINT_URI
@@ -321,8 +307,6 @@ spec:
         version: v1
         kubernetes.io/cluster-service: "true"
     spec:
-      serviceAccount: fluentd
-      serviceAccountName: fluentd
       containers:
       - name: fluentd
         image: xbernpa/fluentd-kubernetes-gelf
