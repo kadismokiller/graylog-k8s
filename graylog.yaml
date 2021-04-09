@@ -52,54 +52,6 @@ spec:
     requests:
       storage: 6Gi
 
-
-
-
-
-
----
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRole
-metadata:
-  name: graylog
-  namespace: graylog
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - nodes
-  - nodes/proxy
-  - services
-  - endpoints
-  - pods
-  verbs:
-  - get
-  - list
-  - watch
-  verbs:
-  - get
-
-
----
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRoleBinding
-metadata:
-  name: graylog
-  namespace: graylog
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: graylog
-subjects:
-- kind: Group
-  name: system:serviceaccounts
-  apiGroup: rbac.authorization.k8s.io
-- kind: ServiceAccount
-  name: graylog
-  namespace: graylog
-
-
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -345,48 +297,6 @@ spec:
           backend:
             serviceName: graylog
             servicePort: 9000
-
-
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  namespace: graylog
-  name: fluentd
-
----
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRole
-metadata:
-  namespace: graylog
-  name: fluentd
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - pods
-  - endpoints
-  verbs:
-  - get
-  - list
-  - watch
-
-
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1beta1
-metadata:
-  namespace: graylog
-  name: fluentd
-roleRef:
-  kind: ClusterRole
-  name: fluentd
-  apiGroup: rbac.authorization.k8s.io
-subjects:
-- kind: ServiceAccount
-  name: fluentd
-  namespace: kube-system
-
 
 
 ---
