@@ -144,13 +144,13 @@ spec:
         resources: {}
         
         volumeMounts:
-        - name: mongodb-volume
+        - name: mongodb-volume-stg
           mountPath: /data/db
 
       restartPolicy: Always
 
       volumes:
-      - name: mongodb-volume
+      - name: mongodb-volume-stg
         persistentVolumeClaim:
           claimName: mongodb-pvc-stg
 status: {}
