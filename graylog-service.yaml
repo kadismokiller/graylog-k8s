@@ -1,0 +1,31 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"creationTimestamp":null,"labels":{"service":"graylog"},"name":"graylog","namespace":"graylog"},"spec":{"ports":[{"name":"tcp","port":9000,"protocol":"TCP","targetPort":9000},{"name":"udp","port":12201,"protocol":"UDP","targetPort":12201}],"selector":{"service":"graylog"},"type":"ClusterIP"}}
+  creationTimestamp: "2021-04-09T17:22:31Z"
+  labels:
+    service: graylog
+  name: graylog
+  namespace: graylog
+  resourceVersion: "16084"
+  selfLink: /api/v1/namespaces/graylog/services/graylog
+  uid: 133841d3-1e68-490e-8075-7e74f5b288cf
+spec:
+  clusterIP: 10.43.166.67
+  ports:
+  - name: tcp
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  - name: udp
+    port: 12201
+    protocol: UDP
+    targetPort: 12201
+  selector:
+    service: graylog
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

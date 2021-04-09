@@ -1,0 +1,27 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"creationTimestamp":null,"labels":{"service":"elasticsearch"},"name":"elasticsearch","namespace":"graylog"},"spec":{"clusterIP":"None","ports":[{"name":"headless","port":55555,"targetPort":0}],"selector":{"service":"elasticsearch"}},"status":{"loadBalancer":{}}}
+  creationTimestamp: "2021-04-09T17:22:31Z"
+  labels:
+    service: elasticsearch
+  name: elasticsearch
+  namespace: graylog
+  resourceVersion: "16047"
+  selfLink: /api/v1/namespaces/graylog/services/elasticsearch
+  uid: edfd2f02-1bdb-45e3-86d0-6781da7e65c9
+spec:
+  clusterIP: None
+  ports:
+  - name: headless
+    port: 55555
+    protocol: TCP
+    targetPort: 55555
+  selector:
+    service: elasticsearch
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

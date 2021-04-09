@@ -1,0 +1,27 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"creationTimestamp":null,"labels":{"service":"mongo"},"name":"mongo","namespace":"graylog"},"spec":{"clusterIP":"None","ports":[{"name":"headless","port":55555,"targetPort":0}],"selector":{"service":"mongo"}},"status":{"loadBalancer":{}}}
+  creationTimestamp: "2021-04-09T17:22:31Z"
+  labels:
+    service: mongo
+  name: mongo
+  namespace: graylog
+  resourceVersion: "16063"
+  selfLink: /api/v1/namespaces/graylog/services/mongo
+  uid: 4ad8edda-8f16-42a5-ae7c-93f328536f2f
+spec:
+  clusterIP: None
+  ports:
+  - name: headless
+    port: 55555
+    protocol: TCP
+    targetPort: 55555
+  selector:
+    service: mongo
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

@@ -1,0 +1,32 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"name":"elasticsearch-pvc","namespace":"graylog"},"spec":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"6Gi"}},"storageClassName":"longhorn"}}
+    pv.kubernetes.io/bind-completed: "yes"
+    pv.kubernetes.io/bound-by-controller: "yes"
+    volume.beta.kubernetes.io/storage-provisioner: driver.longhorn.io
+  creationTimestamp: "2021-04-09T17:22:31Z"
+  finalizers:
+  - kubernetes.io/pvc-protection
+  name: elasticsearch-pvc
+  namespace: graylog
+  resourceVersion: "16186"
+  selfLink: /api/v1/namespaces/graylog/persistentvolumeclaims/elasticsearch-pvc
+  uid: 6fa568cb-4513-4c6e-af39-502cab5bcdcb
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 6Gi
+  storageClassName: longhorn
+  volumeMode: Filesystem
+  volumeName: pvc-6fa568cb-4513-4c6e-af39-502cab5bcdcb
+status:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 6Gi
+  phase: Bound

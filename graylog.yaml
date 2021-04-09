@@ -1,0 +1,86 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"creationTimestamp":null,"name":"graylog","namespace":"graylog"},"spec":{"replicas":1,"selector":{"matchLabels":{"service":"graylog"}},"strategy":{},"template":{"metadata":{"creationTimestamp":null,"labels":{"service":"graylog"}},"spec":{"containers":[{"env":[{"name":"GRAYLOG_WEB_ENDPOINT_URI","value":"http://graylog.rancher.k8smaster.club/api"},{"name":"GRAYLOG_ELASTICSEARCH_HOSTS","value":"http://elasticsearch.graylog.svc.cluster.local:9200"},{"name":"ELASTICSEARCH_DISCOVERY_ZEN_PING_MULTICAST_ENABLED","value":"false"},{"name":"ELASTICSEARCH_DISCOVERY_ZEN_PING_UNICAST_HOSTS","value":"elasticsearch.graylog.svc.cluster.local:9300"}],"image":"docker.io/graylog2/server:2.3.0-1","name":"graylog","ports":[{"containerPort":9000},{"containerPort":12201}],"resources":{},"volumeMounts":[{"mountPath":"/opt/graylog/data","name":"graylog-volume"}]}],"restartPolicy":"Always","serviceAccount":"graylog","volumes":[{"name":"graylog-volume","persistentVolumeClaim":{"claimName":"graylog-pvc"}}]}}},"status":{}}
+  creationTimestamp: "2021-04-09T16:57:33Z"
+  generation: 1
+  name: graylog
+  namespace: graylog
+  resourceVersion: "8517"
+  selfLink: /apis/apps/v1/namespaces/graylog/deployments/graylog
+  uid: 404f49a2-2c3d-41bf-9fb0-56db0bf5173e
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      service: graylog
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: graylog
+    spec:
+      containers:
+      - env:
+        - name: GRAYLOG_WEB_ENDPOINT_URI
+          value: http://graylog.rancher.k8smaster.club/api
+        - name: GRAYLOG_ELASTICSEARCH_HOSTS
+          value: http://elasticsearch.graylog.svc.cluster.local:9200
+        - name: ELASTICSEARCH_DISCOVERY_ZEN_PING_MULTICAST_ENABLED
+          value: "false"
+        - name: ELASTICSEARCH_DISCOVERY_ZEN_PING_UNICAST_HOSTS
+          value: elasticsearch.graylog.svc.cluster.local:9300
+        image: docker.io/graylog2/server:2.3.0-1
+        imagePullPolicy: IfNotPresent
+        name: graylog
+        ports:
+        - containerPort: 9000
+          protocol: TCP
+        - containerPort: 12201
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /opt/graylog/data
+          name: graylog-volume
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: graylog
+      serviceAccountName: graylog
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: graylog-volume
+        persistentVolumeClaim:
+          claimName: graylog-pvc
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2021-04-09T16:59:05Z"
+    lastUpdateTime: "2021-04-09T16:59:05Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2021-04-09T16:57:33Z"
+    lastUpdateTime: "2021-04-09T16:59:05Z"
+    message: ReplicaSet "graylog-55494758db" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
