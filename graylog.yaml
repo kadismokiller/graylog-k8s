@@ -342,4 +342,3 @@ spec:
         hostPath:
           # path: /var/log/containers/
           path: /var/lib/docker/
-
